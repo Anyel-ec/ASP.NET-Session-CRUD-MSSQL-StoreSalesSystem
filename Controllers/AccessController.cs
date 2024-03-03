@@ -22,7 +22,7 @@ namespace TiendaCRUD.Controllers
                 using (dotnetEntities db = new dotnetEntities())
                 {
                     var lst = from d in db.usuarios
-                              where d.usuario == usuario && d.clave == clave
+                              where (d.usuario == usuario || d.correo == usuario) && d.clave == clave
                               select d;
 
                     if (lst.Count() > 0)
@@ -41,6 +41,12 @@ namespace TiendaCRUD.Controllers
             {
                 return Content("Ocurrio un error: " + ex.Message);
             }
+        }
+
+        public ActionResult CloseSession()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Index");
         }
     }
 }

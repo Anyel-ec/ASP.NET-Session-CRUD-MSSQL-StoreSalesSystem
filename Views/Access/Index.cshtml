@@ -2,15 +2,38 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    
 
-<h2>Index</h2>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60vh; /* Ajusta la altura al 100% del viewport */
+    }
 
-<div class="row">
-    <div class="col-6">
+    .login-form {
+        width: 350px;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-form">
+        <h2 class="mb-4">Inicio de Sesión</h2>
         <form id="frm">
-            Username: <input type="text" id="username" name="usuario" class="form-control" placeholder="Usuario" />
-            Password: <input type="password" id="password" name="clave" class="form-control" placeholder="Contraseña" />
-            <input type="submit" value="Login" class="btn btn-primary" />
+            <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+                <input type="text" id="username" name="usuario" class="form-control" placeholder="Ingrese su usuario o correo" /> 
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" id="password" name="clave" class="form-control" placeholder="Ingrese su contraseña" />
+            </div>
+            <input type="submit" value="Iniciar" class="btn btn-primary w-100" />
         </form>
     </div>
 </div>

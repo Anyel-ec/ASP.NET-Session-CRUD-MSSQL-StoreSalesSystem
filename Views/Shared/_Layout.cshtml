@@ -4,14 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - Tienda</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Tiendita", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -20,17 +20,59 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Usuarios", "Index", "User", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Cerrar Sesion", "Logoff", "Access", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Cerrar Sesion", "CloseSession", "Access", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Anyel - EC</p>
-        </footer>
+
+        <div class="container-footer container-fluid mt-5">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Sobre Nosotros</h5>
+                    <p>
+                        Somos una tienda de víveres comprometida en proveer productos frescos y de alta calidad para satisfacer las necesidades de nuestros clientes.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Enlaces Útiles</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1">
+                            <a href="#!" style="color: #333;">Preguntas Frecuentes</a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#!" style="color: #333;">Envíos</a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#!" style="color: #333;">Precios</a>
+                        </li>
+                        <li>
+                            <a href="#!" style="color: #333;">Áreas de Entrega</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="mb-1" style="letter-spacing: 2px; color: #333;">Horario de Atención</h5>
+                    <table class="table" style="color: #333;">
+                        <tbody>
+                            <tr>
+                                <td>Lunes - Viernes:</td>
+                                <td>8am - 9pm</td>
+                            </tr>
+                            <tr>
+                                <td>Sábado - Domingo:</td>
+                                <td>8am - 1am</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
