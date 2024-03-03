@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-6">
+        <form id="frm">
+            Username: <input type="text" id="username" name="usuario" class="form-control" placeholder="Usuario" />
+            Password: <input type="password" id="password" name="clave" class="form-control" placeholder="Contraseña" />
+            <input type="submit" value="Login" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#frm").submit(function (e) {
+            e.preventDefault();
+
+            url = "@Url.Content("~/Access/Enter")"
+            parametros = $(this).serialize();
+
+            $.post(url, parametros, function (data) {
+                if (data == "1") {
+                    alert("Bienvenido");
+                    window.location.href = "@Url.Content("~/User/Index")";
+                } else {
+                    alert("Usuario o clave incorrecta");
+                }
+            });
+
+        });
+    });
+
+
+</script>
