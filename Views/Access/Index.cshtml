@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -15,8 +16,9 @@
 </div>
 
 
+@section scripts{
 
-<script>
+    <script>
     $(document).ready(function () {
         $("#frm").submit(function (e) {
             e.preventDefault();
@@ -27,7 +29,7 @@
             $.post(url, parametros, function (data) {
                 if (data == "1") {
                     alert("Bienvenido");
-                    window.location.href = "@Url.Content("~/User/Index")";
+                    document.location.href = "@Url.Content("~/Home/Index")";
                 } else {
                     alert("Usuario o clave incorrecta");
                 }
@@ -37,4 +39,6 @@
     });
 
 
-</script>
+    </script>
+
+}

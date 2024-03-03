@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TiendaCRUD.Models;
 
 namespace TiendaCRUD.Controllers
 {
@@ -12,6 +13,34 @@ namespace TiendaCRUD.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult Enter(string usuario, string clave)
+        {
+            try
+            {
+                using (dotnetEntities db = new dotnetEntities())
+                {
+                    var lst = from d in db.usuarios
+                              where d.usuario == usuario && d.clave == clave
+                              select d;
+
+                    if (lst.Count() > 0)
+                    {
+                        usuarios oUser = lst.First();
+                        Session["User"] = oUser;
+                        return Content("1");
+                    }
+                    else
+                    {
+                        return Content("Usuario o clave incorrecta");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("Ocurrio un error: " + ex.Message);
+            }
         }
     }
 }

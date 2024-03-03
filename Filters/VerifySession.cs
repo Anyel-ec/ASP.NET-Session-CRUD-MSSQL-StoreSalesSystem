@@ -13,10 +13,10 @@ namespace TiendaCRUD.Filters
         {
             try
             {
-                var oUsuario = (usuario)HttpContext.Current.Session["User"];
-                base.OnActionExecuting(filterContext);
-                if (filterContext.HttpContext.Session["User"] == null)
+                var oUsuario = (usuarios)HttpContext.Current.Session["User"];
+                if (oUsuario == null)
                 {
+
                     if (filterContext.Controller is Controllers.AccessController == false)
                     {
                         filterContext.HttpContext.Response.Redirect("~/Access/Index");
