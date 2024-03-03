@@ -5,34 +5,412 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="dotnetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="cedula" Type="varchar" MaxLength="10" />
+          <Property Name="eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="detalle_pedido">
+          <Key>
+            <PropertyRef Name="id_detalle_pedido" />
+          </Key>
+          <Property Name="id_detalle_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pedido" Type="int" />
+          <Property Name="id_producto" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="subtotal" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" />
+          <Property Name="cedula" Type="varchar" MaxLength="10" />
+          <Property Name="eliminado" Type="bit" />
+          <Property Name="id_puesto" Type="int" />
+        </EntityType>
+        <EntityType Name="estado_pedido">
+          <Key>
+            <PropertyRef Name="id_estado_pedido" />
+          </Key>
+          <Property Name="id_estado_pedido" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cliente" Type="int" />
+          <Property Name="id_empleado" Type="int" />
+          <Property Name="id_estado_pedido" Type="int" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_producto" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="puesto">
+          <Key>
+            <PropertyRef Name="id_puesto" />
+          </Key>
+          <Property Name="id_puesto" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="id_usuario" />
           </Key>
           <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="usuario" Type="varchar" MaxLength="25" />
-          <Property Name="correo" Type="varchar" MaxLength="25" />
-          <Property Name="clave" Type="varchar" MaxLength="15" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+          <Property Name="clave" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK__detalle_p__id_pe__5165187F">
+          <End Role="pedido" Type="Self.pedido" Multiplicity="0..1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido">
+              <PropertyRef Name="id_pedido" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_p__id_pr__52593CB8">
+          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__empleado__id_pue__47DBAE45">
+          <End Role="puesto" Type="Self.puesto" Multiplicity="0..1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="puesto">
+              <PropertyRef Name="id_puesto" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="id_puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido__id_emple__4BAC3F29">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="0..1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido__id_estad__4CA06362">
+          <End Role="estado_pedido" Type="Self.estado_pedido" Multiplicity="0..1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_pedido">
+              <PropertyRef Name="id_estado_pedido" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_estado_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido__total__4AB81AF0">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dotnetModelStoreContainer">
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_pedido" EntityType="Self.detalle_pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado_pedido" EntityType="Self.estado_pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pedido" EntityType="Self.pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="producto" EntityType="Self.producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="puesto" EntityType="Self.puesto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__detalle_p__id_pe__5165187F" Association="Self.FK__detalle_p__id_pe__5165187F">
+            <End Role="pedido" EntitySet="pedido" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_p__id_pr__52593CB8" Association="Self.FK__detalle_p__id_pr__52593CB8">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__empleado__id_pue__47DBAE45" Association="Self.FK__empleado__id_pue__47DBAE45">
+            <End Role="puesto" EntitySet="puesto" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido__id_emple__4BAC3F29" Association="Self.FK__pedido__id_emple__4BAC3F29">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido__id_estad__4CA06362" Association="Self.FK__pedido__id_estad__4CA06362">
+            <End Role="estado_pedido" EntitySet="estado_pedido" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido__total__4AB81AF0" Association="Self.FK__pedido__total__4AB81AF0">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dotnetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="eliminado" Type="Boolean" />
+          <NavigationProperty Name="pedido" Relationship="Self.FK__pedido__total__4AB81AF0" FromRole="cliente" ToRole="pedido" />
+        </EntityType>
+        <EntityType Name="detalle_pedido">
+          <Key>
+            <PropertyRef Name="id_detalle_pedido" />
+          </Key>
+          <Property Name="id_detalle_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pedido" Type="Int32" />
+          <Property Name="id_producto" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="subtotal" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="pedido" Relationship="Self.FK__detalle_p__id_pe__5165187F" FromRole="detalle_pedido" ToRole="pedido" />
+          <NavigationProperty Name="producto" Relationship="Self.FK__detalle_p__id_pr__52593CB8" FromRole="detalle_pedido" ToRole="producto" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="id_empleado" />
+          </Key>
+          <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="eliminado" Type="Boolean" />
+          <Property Name="id_puesto" Type="Int32" />
+          <NavigationProperty Name="puesto" Relationship="Self.FK__empleado__id_pue__47DBAE45" FromRole="empleado" ToRole="puesto" />
+          <NavigationProperty Name="pedido" Relationship="Self.FK__pedido__id_emple__4BAC3F29" FromRole="empleado" ToRole="pedido" />
+        </EntityType>
+        <EntityType Name="estado_pedido">
+          <Key>
+            <PropertyRef Name="id_estado_pedido" />
+          </Key>
+          <Property Name="id_estado_pedido" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pedido" Relationship="Self.FK__pedido__id_estad__4CA06362" FromRole="estado_pedido" ToRole="pedido" />
+        </EntityType>
+        <EntityType Name="pedido">
+          <Key>
+            <PropertyRef Name="id_pedido" />
+          </Key>
+          <Property Name="id_pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" />
+          <Property Name="id_empleado" Type="Int32" />
+          <Property Name="id_estado_pedido" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__pedido__total__4AB81AF0" FromRole="pedido" ToRole="cliente" />
+          <NavigationProperty Name="detalle_pedido" Relationship="Self.FK__detalle_p__id_pe__5165187F" FromRole="pedido" ToRole="detalle_pedido" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK__pedido__id_emple__4BAC3F29" FromRole="pedido" ToRole="empleado" />
+          <NavigationProperty Name="estado_pedido" Relationship="Self.FK__pedido__id_estad__4CA06362" FromRole="pedido" ToRole="estado_pedido" />
+        </EntityType>
+        <EntityType Name="producto">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_producto" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="eliminado" Type="Boolean" />
+          <NavigationProperty Name="detalle_pedido" Relationship="Self.FK__detalle_p__id_pr__52593CB8" FromRole="producto" ToRole="detalle_pedido" />
+        </EntityType>
+        <EntityType Name="puesto">
+          <Key>
+            <PropertyRef Name="id_puesto" />
+          </Key>
+          <Property Name="id_puesto" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="empleado" Relationship="Self.FK__empleado__id_pue__47DBAE45" FromRole="puesto" ToRole="empleado" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="usuarios">
           <Key>
             <PropertyRef Name="id_usuario" />
           </Key>
           <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="correo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="clave" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="FK__pedido__total__4AB81AF0">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_p__id_pe__5165187F">
+          <End Role="pedido" Type="Self.pedido" Multiplicity="0..1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pedido">
+              <PropertyRef Name="id_pedido" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__detalle_p__id_pr__52593CB8">
+          <End Role="producto" Type="Self.producto" Multiplicity="0..1" />
+          <End Role="detalle_pedido" Type="Self.detalle_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="detalle_pedido">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__empleado__id_pue__47DBAE45">
+          <End Role="puesto" Type="Self.puesto" Multiplicity="0..1" />
+          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="puesto">
+              <PropertyRef Name="id_puesto" />
+            </Principal>
+            <Dependent Role="empleado">
+              <PropertyRef Name="id_puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido__id_emple__4BAC3F29">
+          <End Role="empleado" Type="Self.empleado" Multiplicity="0..1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="id_empleado" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_empleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pedido__id_estad__4CA06362">
+          <End Role="estado_pedido" Type="Self.estado_pedido" Multiplicity="0..1" />
+          <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado_pedido">
+              <PropertyRef Name="id_estado_pedido" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="id_estado_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dotnetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="detalle_pedido" EntityType="Self.detalle_pedido" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" />
+          <EntitySet Name="estado_pedido" EntityType="Self.estado_pedido" />
+          <EntitySet Name="pedido" EntityType="Self.pedido" />
+          <EntitySet Name="producto" EntityType="Self.producto" />
+          <EntitySet Name="puesto" EntityType="Self.puesto" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
+          <AssociationSet Name="FK__pedido__total__4AB81AF0" Association="Self.FK__pedido__total__4AB81AF0">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_p__id_pe__5165187F" Association="Self.FK__detalle_p__id_pe__5165187F">
+            <End Role="pedido" EntitySet="pedido" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__detalle_p__id_pr__52593CB8" Association="Self.FK__detalle_p__id_pr__52593CB8">
+            <End Role="producto" EntitySet="producto" />
+            <End Role="detalle_pedido" EntitySet="detalle_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__empleado__id_pue__47DBAE45" Association="Self.FK__empleado__id_pue__47DBAE45">
+            <End Role="puesto" EntitySet="puesto" />
+            <End Role="empleado" EntitySet="empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido__id_emple__4BAC3F29" Association="Self.FK__pedido__id_emple__4BAC3F29">
+            <End Role="empleado" EntitySet="empleado" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pedido__id_estad__4CA06362" Association="Self.FK__pedido__id_estad__4CA06362">
+            <End Role="estado_pedido" EntitySet="estado_pedido" />
+            <End Role="pedido" EntitySet="pedido" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -40,6 +418,93 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dotnetModelStoreContainer" CdmEntityContainer="dotnetEntities">
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="dotnetModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_pedido">
+            <EntityTypeMapping TypeName="dotnetModel.detalle_pedido">
+              <MappingFragment StoreEntitySet="detalle_pedido">
+                <ScalarProperty Name="id_detalle_pedido" ColumnName="id_detalle_pedido" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleado">
+            <EntityTypeMapping TypeName="dotnetModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+                <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estado_pedido">
+            <EntityTypeMapping TypeName="dotnetModel.estado_pedido">
+              <MappingFragment StoreEntitySet="estado_pedido">
+                <ScalarProperty Name="id_estado_pedido" ColumnName="id_estado_pedido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pedido">
+            <EntityTypeMapping TypeName="dotnetModel.pedido">
+              <MappingFragment StoreEntitySet="pedido">
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="id_estado_pedido" ColumnName="id_estado_pedido" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="producto">
+            <EntityTypeMapping TypeName="dotnetModel.producto">
+              <MappingFragment StoreEntitySet="producto">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="eliminado" ColumnName="eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="puesto">
+            <EntityTypeMapping TypeName="dotnetModel.puesto">
+              <MappingFragment StoreEntitySet="puesto">
+                <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dotnetModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="usuarios">
             <EntityTypeMapping TypeName="dotnetModel.usuarios">
               <MappingFragment StoreEntitySet="usuarios">

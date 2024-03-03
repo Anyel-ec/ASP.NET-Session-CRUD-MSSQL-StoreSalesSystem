@@ -25,6 +25,14 @@ namespace TiendaCRUD.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<cliente> cliente { get; set; }
+        public virtual DbSet<detalle_pedido> detalle_pedido { get; set; }
+        public virtual DbSet<empleado> empleado { get; set; }
+        public virtual DbSet<estado_pedido> estado_pedido { get; set; }
+        public virtual DbSet<pedido> pedido { get; set; }
+        public virtual DbSet<producto> producto { get; set; }
+        public virtual DbSet<puesto> puesto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<usuarios> usuarios { get; set; }
     }
 }

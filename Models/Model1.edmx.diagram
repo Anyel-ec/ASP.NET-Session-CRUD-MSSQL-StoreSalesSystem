@@ -4,8 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="17e24da837a34f458c8711bcb73451ce" Name="Diagram1">
-        <EntityTypeShape EntityType="dotnetModel.usuarios" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="1ea60c1d35084c6b8be0137633cf6856" Name="Diagram1">
+        <EntityTypeShape EntityType="dotnetModel.cliente" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.detalle_pedido" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.empleado" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.estado_pedido" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.pedido" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.producto" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.puesto" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dotnetModel.usuarios" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="dotnetModel.FK__pedido__total__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="dotnetModel.FK__detalle_p__id_pe__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="dotnetModel.FK__detalle_p__id_pr__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="dotnetModel.FK__empleado__id_pue__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="dotnetModel.FK__pedido__id_emple__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="dotnetModel.FK__pedido__id_estad__4CA06362" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
