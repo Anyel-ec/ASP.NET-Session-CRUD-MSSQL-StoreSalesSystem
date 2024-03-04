@@ -16,11 +16,12 @@ namespace TiendaCRUD.Filters
                 var oUsuario = (usuarios)HttpContext.Current.Session["User"];
                 if (oUsuario == null)
                 {
-
+                    // si no hay usuario en la sesion
                     if (filterContext.Controller is Controllers.AccessController == false)
                     {
                         filterContext.HttpContext.Response.Redirect("~/Access/Index");
                     }
+                   
                 }
             }
             catch (Exception)
