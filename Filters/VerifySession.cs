@@ -21,7 +21,14 @@ namespace TiendaCRUD.Filters
                     {
                         filterContext.HttpContext.Response.Redirect("~/Access/Index");
                     }
-                   
+                }
+                else
+                {
+                    // si hay usuario en la sesion
+                    if (filterContext.Controller is Controllers.AccessController == true)
+                    {
+                        filterContext.HttpContext.Response.Redirect("~/Home/Index");
+                    }
                 }
             }
             catch (Exception)

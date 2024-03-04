@@ -46,7 +46,7 @@ namespace TiendaCRUD.Controllers
         public ActionResult CloseSession()
         {
             Session["User"] = null;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
