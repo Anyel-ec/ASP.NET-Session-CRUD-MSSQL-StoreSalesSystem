@@ -27,18 +27,17 @@
                         <li>@Html.ActionLink("Pedido", "Index", "Pedido", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Usuarios", "Index", "User", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
-                }
-
-            <ul class="navbar-nav">
-                @if (Session["User"] == null)
-                {
-                    <li>@Html.ActionLink("Iniciar Sesion", "Index", "Access", new { area = "" }, new { @class = "nav-link" })</li>
-                }
-                @if (Session["User"] != null)
-                {
-                    <li>@Html.ActionLink("Cerrar Sesion", "CloseSession", "Access", new { area = "" }, new { @class = "nav-link" })</li>
-                }
-            </ul>
+                 }
+                <ul class="navbar-nav">
+                    @if (Session["User"] == null)
+                    {
+                        <li>@Html.ActionLink("Iniciar Sesion", "Index", "Access", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    @if (Session["User"] != null)
+                    {
+                        <li>@Html.ActionLink("Cerrar Sesion", "CloseSession", "Access", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
             </div>
         </div>
     </nav>
