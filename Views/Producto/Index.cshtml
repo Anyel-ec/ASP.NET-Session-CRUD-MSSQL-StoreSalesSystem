@@ -2,6 +2,59 @@
 @{
     ViewBag.Title = "Index";
 }
+<!--section de estilos para el dtaable-->
+<header>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.min.css">
+</header>
+
 
 <h2>Lista de Productos</h2>
+<!--datatable de jquery-->
 
+<table id="myTable" class="display table table-borderless">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1</td>
+            <td>Row 1 </td>
+        </tr>
+        <tr>
+            <td>Row 2 </td>
+            <td>Row 2 </td>
+        </tr>
+    </tbody>
+</table>
+
+<!--secrion de anotacion html de sectio de scripts-->
+@section scripts{
+    <script src="https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json"></script>
+
+
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js">
+
+    </script>
+
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.min.js">
+
+    </script>
+  
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json"
+                }
+            });
+        });
+    </script>
+
+}
