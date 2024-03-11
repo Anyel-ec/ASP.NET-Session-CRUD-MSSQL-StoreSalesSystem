@@ -1,0 +1,52 @@
+﻿@model TiendaCRUD.Models.ViewModels.ProductoViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+
+@using (Html.BeginForm("Editar", "Producto", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-12 ">
+            @Html.HiddenFor(d => d.id_producto) <!-- Campo oculto del id -->
+
+
+            @Html.LabelFor(d => d.codigo_producto, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.codigo_producto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.codigo_producto, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.nombre, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.nombre, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.descripcion, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.descripcion, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.precio, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.precio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.precio, "", new { @class = "text-danger" })
+
+            <div>
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+            <a class="btn btn-danger mt-3 mb-3" href="~/Producto/">Regresar</a>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+}
+
+

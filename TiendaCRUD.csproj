@@ -264,6 +264,7 @@
     <Content Include="Views\DetallePedido\Index.cshtml" />
     <Content Include="Views\Pedido\Index.cshtml" />
     <Content Include="Views\Producto\Nuevo.cshtml" />
+    <Content Include="Views\Producto\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
