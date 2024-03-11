@@ -1,0 +1,37 @@
+﻿@model TiendaCRUD.Models.ViewModels.ProductoViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>Nuevo</h2>
+
+
+@using (Html.BeginForm("Nuevo", "Producto", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="codigo_producto">Código Producto</label>
+                <input type="text" class="form-control" id="codigo_producto" name="codigo_producto" value="@Model.codigo_producto">
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" value="@Model.descripcion">
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="@Model.nombre">
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <input type="text" class="form-control" id="precio" name="precio" value="@Model.precio">
+            </div>
+           
+       
+            <button type="submit" class="btn btn-primary">Guardar</button>
+
+        </div>
+    </div>
+ }
+
+
