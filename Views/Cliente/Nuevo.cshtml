@@ -1,0 +1,55 @@
+﻿@model TiendaCRUD.Models.ViewModels.ClienteViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>Nuevo</h2>
+
+
+@using (Html.BeginForm("Nuevo", "Cliente", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-12 ">
+            @Html.LabelFor(d => d.nombre, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.nombre, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.apellido, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.apellido, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.apellido, "", new { @class = "text-danger" })
+
+
+            @Html.LabelFor(d => d.telefono, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.telefono, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.direccion, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.direccion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.direccion, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.cedula, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.cedula, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.cedula, "", new { @class = "text-danger" })
+
+            <div>
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+            <a class="btn btn-danger mt-3 mb-3" href="~/Cliente/">Regresar</a>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+}
+
+

@@ -20,6 +20,7 @@
                 @if (Session["User"] != null)
                 {
                     <ul class="navbar-nav flex-grow-1">
+
                         <li>@Html.ActionLink("Productos", "Index", "Producto", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Clientes", "Index", "Cliente", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Empleados", "Index", "Empleado", new { area = "" }, new { @class = "nav-link" })</li>
