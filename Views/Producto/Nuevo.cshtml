@@ -9,26 +9,38 @@
 @using (Html.BeginForm("Nuevo", "Producto", FormMethod.Post))
 {
     <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label for="codigo_producto">Código Producto</label>
-                <input type="text" class="form-control" id="codigo_producto" name="codigo_producto" value="@Model.codigo_producto">
+        <div class="col-12 ">
+            @Html.LabelFor(d => d.codigo_producto, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.codigo_producto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.codigo_producto, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.nombre, htmlAttributes: new { @class = "form-label" })
+        <br />
+            @Html.EditorFor(d => d.nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.nombre, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.descripcion, htmlAttributes: new { @class = "form-label" })
+            <br />
+            @Html.EditorFor(d => d.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.descripcion, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.precio, htmlAttributes: new { @class = "form-label" })
+        <br />
+            @Html.EditorFor(d => d.precio, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(d => d.precio, "", new { @class = "text-danger" })
+
+            <div>
+                <input value="Guardar" class="btn btn-primary" type="submit" />
             </div>
-            <div class="form-group">
-                <label for="descripcion">Descripción</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion" value="@Model.descripcion">
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="@Model.nombre">
-            </div>
-            <div class="form-group">
-                <label for="precio">Precio</label>
-                <input type="text" class="form-control" id="precio" name="precio" value="@Model.precio">
-            </div>
-           
-       
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a class="btn btn-danger mt-3 mb-3" href="~/Producto/">Regresar</a>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
 
         </div>
     </div>

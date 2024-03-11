@@ -53,7 +53,7 @@ namespace TiendaCRUD.Controllers
                         db.producto.Add(oProducto);
                         db.SaveChanges();
                     }
-                    return Redirect("~/Producto/");
+                    return Redirect("~/Producto/Index");
                 }
                 return View(model);
             }
