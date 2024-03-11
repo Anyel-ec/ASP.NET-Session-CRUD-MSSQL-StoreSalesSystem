@@ -99,6 +99,9 @@ namespace TiendaCRUD.Controllers
                         oCliente.direccion = model.direccion;
                         oCliente.telefono = model.telefono;
                         oCliente.cedula = model.cedula;
+                        model.id_cliente = model.id_cliente;
+
+                        
                         db.Entry(oCliente).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                     }
@@ -110,6 +113,19 @@ namespace TiendaCRUD.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        [HttpGet]
+        public ActionResult Eliminar(int id)
+        {
+            using (dotnetEntities db = new dotnetEntities())
+            {
+                var oCliente = db.cliente.Find(id);
+                oCliente.eliminado = true;
+                db.Entry(oCliente).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            return Redirect("~/Cliente/Index");
         }
 
 

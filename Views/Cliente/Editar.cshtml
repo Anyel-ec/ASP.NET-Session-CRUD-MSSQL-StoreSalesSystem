@@ -10,6 +10,9 @@
 {
     <div class="row">
         <div class="col-12 ">
+            @Html.HiddenFor(d => d.id_cliente) <!-- Campo oculto del id -->
+
+
             @Html.LabelFor(d => d.nombre, htmlAttributes: new { @class = "form-label" })
             <br />
             @Html.EditorFor(d => d.nombre, new { htmlAttributes = new { @class = "form-control" } })
@@ -45,11 +48,6 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-
-        </div>
-    </div>
 }
 
 

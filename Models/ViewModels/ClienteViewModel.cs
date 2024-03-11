@@ -18,9 +18,11 @@ namespace TiendaCRUD.Models.ViewModels
         [Required]
         [Display(Name = "Dirección")]
         public string direccion { get; set; }
+
         [Required]
         [Display(Name = "Teléfono")]
         public string telefono { get; set; }
+
         [Required]
         [Display(Name = "Cédula")]
         public string cedula { get; set; }
