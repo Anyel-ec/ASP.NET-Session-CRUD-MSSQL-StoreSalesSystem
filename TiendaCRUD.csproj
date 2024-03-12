@@ -184,7 +184,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\ClienteViewModel.cs" />
+    <Compile Include="Models\ViewModels\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListClienteViewModel.cs" />
+    <Compile Include="Models\ViewModels\ListEmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListProductoViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
