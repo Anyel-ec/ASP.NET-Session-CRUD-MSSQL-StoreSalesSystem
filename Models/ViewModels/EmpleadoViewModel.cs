@@ -19,7 +19,7 @@ namespace TiendaCRUD.Models.ViewModels
         [Required]
         [Display(Name = "Teléfono")]
         // validar que el telefono sea de 10 digitos y dar un mensaje de error si no lo es
-        [StringLength(10)
+        [StringLength(10)]
         public string telefono { get; set; }
         [Required]
         [Display(Name = "Cédula")]
@@ -28,6 +28,10 @@ namespace TiendaCRUD.Models.ViewModels
         public string cedula { get; set; }
         public Nullable<bool> eliminado { get; set; }
         public Nullable<int> id_puesto { get; set; }
+        public virtual puesto puesto { get; set; }
+        public string nombre_puesto { get; set; } // Cambiado de id_puesto a nombre_puesto
+
+
 
     }
 }

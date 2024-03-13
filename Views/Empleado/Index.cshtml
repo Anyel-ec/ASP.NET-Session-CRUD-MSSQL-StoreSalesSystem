@@ -26,8 +26,8 @@
             <thead>
                 <tr>
                     <th>Nombre Completo</th>
-                    <th>Direccion</th>
                     <th>Telefono</th>
+                    <th>Puesto</th>
                     <th>Cedula</th>
                     <th>Acciones</th>
                 </tr>
@@ -38,17 +38,17 @@
                 {
                     <tr>
                         <td>@oProducto.nombre @oProducto.apellido </td>
-                        <td>@oProducto.direccion </td>
                         <td>@oProducto.telefono </td>
+                        <td>@oProducto.nombre_puesto </td>
                         <td>@oProducto.cedula </td>
                         <td class="justify-content-center  d-flex">
                             <a class="text-primary "
-                               href="@Url.Action("Editar", "Cliente", new {id=oProducto.id_cliente})">
+                               href="@Url.Action("Editar", "Empleado", new {id=oProducto.id_empleado})">
                                 <i class="bi bi-pencil-square fs-5 m-1   " contenteditable=""></i>
                             </a>
                             <a class="text-danger"
-                               href="@Url.Action("Eliminar", "Cliente", new {id=oProducto.id_cliente})"
-                               onclick="return confirm('¿Estás seguro de que deseas eliminar este cliente?');">
+                               href="@Url.Action("Eliminar", "Empleado", new {id=oProducto.id_empleado})"
+                               onclick="return confirm('¿Estás seguro de que deseas eliminar este empleado?');">
                                 <i class="bi bi-trash3-fill fs-5 m-1"></i>
                             </a>
 

@@ -17,6 +17,7 @@ namespace TiendaCRUD.Controllers
             using (dotnetEntities db = new dotnetEntities())
             {
                 listaEmpleado = (from d in db.empleado
+                                 join p in db.puesto on d.id_puesto equals p.id_puesto
                                  where d.eliminado == false
                                  select new ListEmpleadoViewModel
                                  {
@@ -26,14 +27,20 @@ namespace TiendaCRUD.Controllers
                                      telefono = d.telefono,
                                      cedula = d.cedula,
                                      eliminado = d.eliminado,
-                                     id_puesto = d.id_puesto
+                                     nombre_puesto = p.nombre // Nombre del puesto en lugar de ID
                                  }).ToList();
             }
             return View(listaEmpleado);
         }
 
+
         public ActionResult Nuevo()
         {
+            using (dotnetEntities db = new dotnetEntities())
+            {
+                var puestos = db.puesto.ToList().Select(p => new SelectListItem { Value = p.id_puesto.ToString(), Text = p.nombre }).ToList();
+                ViewBag.Puestos = puestos;
+            }
             return View();
         }
 
@@ -46,6 +53,7 @@ namespace TiendaCRUD.Controllers
                 {
                     using (dotnetEntities db = new dotnetEntities())
                     {
+                        
                         var oEmpleado = new empleado();
                         oEmpleado.nombre = model.nombre;
                         oEmpleado.apellido = model.apellido;
@@ -58,7 +66,13 @@ namespace TiendaCRUD.Controllers
                     }
                     return Redirect("~/Empleado/Index");
                 }
-                return View(model);
+                using (dotnetEntities db = new dotnetEntities())
+                {
+                    var puestos = db.puesto.ToList().Select(p => new SelectListItem { Value = p.id_puesto.ToString(), Text = p.nombre }).ToList();
+                    ViewBag.Puestos = puestos;
+                }
+                return View();
+
             }
             catch (Exception ex)
             {
@@ -71,6 +85,7 @@ namespace TiendaCRUD.Controllers
             EmpleadoViewModel model = new EmpleadoViewModel();
             using (dotnetEntities db = new dotnetEntities())
             {
+
                 var oEmpleado = db.empleado.Find(id);
                 model.id_empleado = oEmpleado.id_empleado;
                 model.nombre = oEmpleado.nombre;
@@ -80,7 +95,9 @@ namespace TiendaCRUD.Controllers
                 model.id_puesto = oEmpleado.id_puesto;
             }
             return View(model);
+
         }
+
 
         [HttpGet]
         public ActionResult Delete(int id)

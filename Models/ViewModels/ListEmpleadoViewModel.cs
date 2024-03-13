@@ -14,6 +14,11 @@ namespace TiendaCRUD.Models.ViewModels
         public string cedula { get; set; }
         public Nullable<bool> eliminado { get; set; }
         public Nullable<int> id_puesto { get; set; }
+        public string nombre_puesto { get; set; } // Cambiado de id_puesto a nombre_puesto
+
+        // Si deseas mantener la propiedad virtual de 'puesto' puedes dejarla como está
+        public virtual puesto puesto { get; set; }
+
 
     }
 }

@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\PuestoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\VerifySession.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,7 +189,9 @@
     <Compile Include="Models\ViewModels\ListClienteViewModel.cs" />
     <Compile Include="Models\ViewModels\ListEmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListProductoViewModel.cs" />
+    <Compile Include="Models\ViewModels\ListPuestoViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductoViewModel.cs" />
+    <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -271,9 +274,12 @@
     <Content Include="Views\Producto\Editar.cshtml" />
     <Content Include="Views\Cliente\Nuevo.cshtml" />
     <Content Include="Views\Cliente\Editar.cshtml" />
+    <Content Include="Views\Empleado\Nuevo.cshtml" />
+    <Content Include="Views\Empleado\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Puesto\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
