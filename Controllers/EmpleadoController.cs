@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -82,21 +83,71 @@ namespace TiendaCRUD.Controllers
 
         public ActionResult Editar(int id)
         {
-            EmpleadoViewModel model = new EmpleadoViewModel();
             using (dotnetEntities db = new dotnetEntities())
             {
-
                 var oEmpleado = db.empleado.Find(id);
-                model.id_empleado = oEmpleado.id_empleado;
-                model.nombre = oEmpleado.nombre;
-                model.apellido = oEmpleado.apellido;
-                model.telefono = oEmpleado.telefono;
-                model.cedula = oEmpleado.cedula;
-                model.id_puesto = oEmpleado.id_puesto;
-            }
-            return View(model);
+                if (oEmpleado == null)
+                {
+                    return HttpNotFound();
+                }
 
+                var model = new EmpleadoViewModel
+                {
+                    id_empleado = oEmpleado.id_empleado,
+                    nombre = oEmpleado.nombre,
+                    apellido = oEmpleado.apellido,
+                    telefono = oEmpleado.telefono,
+                    cedula = oEmpleado.cedula,
+                    id_puesto = oEmpleado.id_puesto
+                };
+
+                var puestos = db.puesto.ToList().Select(p => new SelectListItem { Value = p.id_puesto.ToString(), Text = p.nombre }).ToList();
+                ViewBag.Puestos = puestos;
+
+                return View(model);
+            }
         }
+
+        [HttpPost]
+        public ActionResult Editar(EmpleadoViewModel model)
+        {
+            using (dotnetEntities db = new dotnetEntities())
+
+                try
+                {
+
+                if (ModelState.IsValid)
+                {
+                    {
+                        var oEmpleado = db.empleado.Find(model.id_empleado);
+                        if (oEmpleado == null)
+                        {
+                            return HttpNotFound();
+                        }
+
+                        oEmpleado.nombre = model.nombre;
+                        oEmpleado.apellido = model.apellido;
+                        oEmpleado.telefono = model.telefono;
+                        oEmpleado.cedula = model.cedula;
+                        oEmpleado.id_puesto = model.id_puesto;
+
+                        db.Entry(oEmpleado).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("Index");
+                }
+                var puestos = db.puesto.ToList().Select(p => new SelectListItem { Value = p.id_puesto.ToString(), Text = p.nombre }).ToList();
+                ViewBag.Puestos = puestos;
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
 
 
         [HttpGet]
