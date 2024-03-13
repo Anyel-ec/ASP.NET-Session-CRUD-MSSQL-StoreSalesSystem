@@ -1,0 +1,65 @@
+﻿@model TiendaCRUD.Models.ViewModels.DetallePedidoViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Nuevo</h2>
+
+
+@using (Html.BeginForm("Editar", "DetallePedido", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-12 ">
+            <!-- el id del detalle pedido oculto-->
+            @Html.HiddenFor(model => model.id_detalle_pedido)
+
+            <!-- un select para mostrar el id del pedido disponible -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_pedido, "Pedido", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_pedido, (IEnumerable<SelectListItem>)ViewBag.Pedidos, "-- Seleccionar Pedido --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_pedido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <!-- un select parar mosotrar el el id del producto dispoible -->
+            @Html.HiddenFor(model => model.id_pedido)
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_producto, "Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_producto, (IEnumerable<SelectListItem>)ViewBag.Productos, "-- Seleccionar Producto --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_producto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- un select para mostrar el nombre del producto -->
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.cantidad, "Cantidad", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <!-- un select para mosotrar el total -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.subtotal, "Subtotal", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.subtotal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.subtotal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+
+
+            <a class="btn btn-danger mt-3 mb-3" href="~/DetallePedido/">Regresar</a>
+            <input value="Guardar" class="btn btn-primary" type="submit" />
+
+
+        </div>
+    </div>
+
+}
+
+

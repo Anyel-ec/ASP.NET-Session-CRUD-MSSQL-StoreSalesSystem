@@ -185,8 +185,10 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\ClienteViewModel.cs" />
+    <Compile Include="Models\ViewModels\DetallePedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListClienteViewModel.cs" />
+    <Compile Include="Models\ViewModels\ListDetallePedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListEmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListPedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListProductoViewModel.cs" />
@@ -280,6 +282,8 @@
     <Content Include="Views\Empleado\Editar.cshtml" />
     <Content Include="Views\Pedido\Nuevo.cshtml" />
     <Content Include="Views\Pedido\Editar.cshtml" />
+    <Content Include="Views\DetallePedido\Nuevo.cshtml" />
+    <Content Include="Views\DetallePedido\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

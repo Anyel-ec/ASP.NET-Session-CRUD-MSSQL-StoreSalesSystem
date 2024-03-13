@@ -36,11 +36,7 @@
             @Html.EditorFor(d => d.cedula, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(d => d.cedula, "", new { @class = "text-danger" })
 
-            @Html.LabelFor(d => d.id_puesto, htmlAttributes: new { @class = "form-label" })
-            <br />
-            @Html.DropDownListFor(d => d.id_puesto, (IEnumerable<SelectListItem>)ViewBag.Puestos, "-- Seleccionar Puesto --", new { @class = "form-control" })
-            @Html.ValidationMessageFor(d => d.id_puesto, "", new { @class = "text-danger" })
-
+           
 
             <div>
                 <input value="Guardar" class="btn btn-primary" type="submit" />
