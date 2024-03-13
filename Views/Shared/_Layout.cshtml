@@ -37,6 +37,8 @@
                     }
                     @if (Session["User"] != null)
                     {
+                       
+
                         <li>@Html.ActionLink("Cerrar Sesion", "CloseSession", "Access", new { area = "" }, new { @class = "nav-link" })</li>
                     }
                 </ul>
