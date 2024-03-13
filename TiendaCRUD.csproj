@@ -188,8 +188,10 @@
     <Compile Include="Models\ViewModels\EmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListClienteViewModel.cs" />
     <Compile Include="Models\ViewModels\ListEmpleadoViewModel.cs" />
+    <Compile Include="Models\ViewModels\ListPedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListProductoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListPuestoViewModel.cs" />
+    <Compile Include="Models\ViewModels\PedidoViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductoViewModel.cs" />
     <Compile Include="Models\ViewModels\PuestoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -276,6 +278,8 @@
     <Content Include="Views\Cliente\Editar.cshtml" />
     <Content Include="Views\Empleado\Nuevo.cshtml" />
     <Content Include="Views\Empleado\Editar.cshtml" />
+    <Content Include="Views\Pedido\Nuevo.cshtml" />
+    <Content Include="Views\Pedido\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

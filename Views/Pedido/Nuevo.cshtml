@@ -1,0 +1,57 @@
+﻿@model TiendaCRUD.Models.ViewModels.PedidoViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>Nuevo</h2>
+
+
+@using (Html.BeginForm("Nuevo", "Pedido", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-12 ">
+           <!-- un select parar mosotrar el noimbre dle cliente mediante un seletc -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.id_cliente, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.id_cliente, (IEnumerable<SelectListItem>)ViewBag.Clientes, "-- Seleccionar Cliente --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_cliente, "", new { @class = "text-danger" })
+            </div>
+            <!--select para mostrar el nombre del empleado mediante un select-->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.id_empleado, "Empleado", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.id_empleado, (IEnumerable<SelectListItem>)ViewBag.Empleados, "-- Seleccionar Empleado --", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.id_empleado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            <!-- un selectr ara mosotar el nombre del estado del pedido-->
+                    <div class="form-group                         ">
+                        @Html.LabelFor(model => model.id_estado_pedido, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.id_estado_pedido, (IEnumerable<SelectListItem>)ViewBag.Estados, "-- Seleccionar Estado --", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.id_estado_pedido, "", new { @class = "text-danger" })
+                         </div>
+                    </div>
+             <!-- un select para el total-->
+                <div class="form-group
+                     ">
+                    @Html.LabelFor(model => model.total, "Total", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
+                    </div>
+                    </div>
+
+
+                <a class="btn btn-danger mt-3 mb-3" href="~/Pedido/">Regresar</a>
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+
+                
+                </div>
+            </div>
+        </div>
+    
+}
+
+
