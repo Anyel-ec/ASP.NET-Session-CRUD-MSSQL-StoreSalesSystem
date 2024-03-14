@@ -14,11 +14,11 @@ This is a management system project for a store, developed in .NET using the MVC
 ### Client
 ![Alt text](doc/client.PNG) 
 ### Product
-![Alt text](doc/product.PNG) 
+![Alt text](doc/Product.PNG) 
 ### Order 
 ![Alt text](doc/Order.PNG) 
 ### New Order
-![Alt text](doc/new__order.PNG)
+![Alt text](doc/new_order.PNG)
 ### Edit Client
 ![Alt text](doc/Edit_client.PNG)
 ### Delete with Alert JS

@@ -13,11 +13,11 @@ Este es un proyecto de sistema de gestión para una tienda, desarrollado en .NET
 ### Cliente
 ![Alt text](doc/client.PNG) 
 ### Producto
-![Alt text](doc/product.PNG) 
+![Alt text](doc/Product.PNG) 
 ### Orden (Pedido))
 ![Alt text](doc/Order.PNG) 
 ### Nueva Orden (Pedido)
-![Alt text](doc/new__order.PNG)
+![Alt text](doc/new_order.PNG)
 ### Editar Cliente
 ![Alt text](doc/Edit_client.PNG)
 ### Eliminar
