@@ -79,9 +79,8 @@ If you wish to contribute to the project, you can take the following actions:
 
 ## Authors
 
-- [Author Name 1]
-- [Author Name 2]
-
+- [Anyel EC](www.anyel.top)
+  
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
